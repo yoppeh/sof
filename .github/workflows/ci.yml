@@ -1,0 +1,64 @@
+#
+# ci.yml
+#
+# Builds every library and runs its tests on each push and pull request:
+#
+#   linux     gcc and clang: make, make check and make sanitize
+#   memcheck  gcc: make memcheck (valgrind), which is slower, on its own
+#   macos     Apple clang: make, make check and make sanitize
+#
+# Every job uses the repository's own Makefiles, as on a developer's machine.
+#
+
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cc: [gcc, clang]
+    env:
+      CC: ${{ matrix.cc }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PCRE2
+        run: sudo apt-get update && sudo apt-get install -y libpcre2-dev
+      - name: Build
+        run: make -j4 CC=$CC
+      - name: Test
+        run: make check CC=$CC
+      - name: Sanitize
+        run: make sanitize CC=$CC
+      - name: Build the single library
+        run: make lib CC=$CC
+
+  memcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PCRE2 and valgrind
+        run: sudo apt-get update && sudo apt-get install -y libpcre2-dev valgrind
+      - name: Memcheck
+        run: make memcheck
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PCRE2
+        run: brew install pcre2
+      - name: Build
+        run: make -j4 CC=clang
+      - name: Test
+        run: make check CC=clang
+      - name: Sanitize
+        run: make sanitize CC=clang
+      - name: Build the single library
+        run: make lib CC=clang

@@ -1,0 +1,13 @@
+# valgrind.supp
+#
+# Suppressions for make memcheck. The machine code PCRE2's JIT makes (see
+# sof_regex_jit()) reads the subject a word at a time, past its end within
+# the same page, and discards the bytes that aren't the subject's; valgrind
+# reports the branches on those bytes as depending on uninitialised values.
+# The code has no object file, so valgrind names its frames "???"; nothing
+# else in the tests runs from memory outside an object.
+{
+   pcre2-jit-reads-past-the-subject
+   Memcheck:Cond
+   obj:???
+}

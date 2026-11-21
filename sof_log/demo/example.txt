@@ -1,0 +1,7 @@
+info: starting backup of /home
+debug opened /home/warren/dev/capi
+trace read 4096 bytes
+copied 1832 files
+WARN: /home/warren/tmp/core is 2 GB, skipping
+error: /home/shared is not readable
+info backup finished with 1 error

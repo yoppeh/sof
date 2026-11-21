@@ -1,0 +1,100 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.exp
+
+# The single library
+build/
+
+# Test programs
+sof_*/test
+sof_*/test-*
+
+# Benchmarks
+sof_*/bench
+sof_*/bench-portable
+
+# Demo programs
+sof_alloc/demo/memstat
+sof_base/demo/basenc
+sof_bit/demo/sieve
+sof_bloom/demo/uniq
+sof_config/demo/ini
+sof_copt/demo/lines
+sof_csv/demo/csvcut
+sof_debug/demo/hanoi
+sof_digest/demo/digestsum
+sof_hash/demo/hashsum
+sof_hashmap/demo/ngram
+sof_heap/demo/bench
+sof_heap/demo/top
+sof_intern/demo/index
+sof_json/demo/csvjson
+sof_log/demo/logrun
+sof_log/demo/logrun-threaded
+sof_lru/demo/cachesim
+sof_mem/demo/concord
+sof_queue/demo/bank
+sof_random/demo/markov
+sof_rbtree/demo/basic
+sof_real/demo/fpinfo
+sof_regex/demo/match
+sof_ring/demo/tail
+sof_set/demo/deps
+sof_sort/demo/anagram
+sof_stack/demo/calc
+sof_string/demo/spell
+sof_timer/demo/timeit
+sof_toml/demo/tomljson
+sof_utf/demo/utfconv
+sof_vector/demo/numstat
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# debug information files
+*.dwo
